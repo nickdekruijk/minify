@@ -1,0 +1,31 @@
+{
+	"name": "nickdekruijk/minify",
+	"keywords": ["minify", "laravel5", "css", "sass", "scss", "javascript", "js"],
+	"description": "A package for automaticaly minifying CSS, SCSS and Javascript for Laravel",
+	"license": "MIT",
+	"authors": [{
+		"name": "Nick de Kruijk",
+		"email": "git@nickdekruijk.nl"
+	}],
+	"require": {
+		"php": ">=7.2.0",
+		"scssphp/scssphp": "^1.0",
+		"tedivm/jshrink": "^1.3"
+	},
+	"autoload": {
+		"psr-4": {
+			"NickDeKruijk\\Minify\\": "src/"
+		}
+	},
+	"minimum-stability": "stable",
+	"extra": {
+		"laravel": {
+			"providers": [
+				"NickDeKruijk\\Minify\\ServiceProvider"
+			],
+			"aliases": {
+				"Minify": "NickDeKruijk\\Minify\\Facade"
+			}
+		}
+	}
+}
