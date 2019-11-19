@@ -3,7 +3,7 @@
 A simple package to minify CSS/SCSS and Javascript on the fly without the need of tools like Laravel Mix or Webpack.
 It combines all stylesheet files or javascript files into a single, minified file with simple but effective cachebusting with filemtime().
 
-Version 2 is a completely new package ([version 1 is archived here](https://github.com/nickdekruijk/minify1)). Is uses  [scssphp/scssphp](https://github.com/scssphp/scssphp) and [tedivm/jshrink](https://github.com/tedivm/jshrink) to archieve it's goals. And by using scssphp minify can now compile SASS/SCSS code too!
+Version 2 is a completely new package ([version 1 is archived here](https://github.com/nickdekruijk/minify1)) using  [scssphp/scssphp](https://github.com/scssphp/scssphp) and [tedivm/jshrink](https://github.com/tedivm/jshrink). Because minify  now replaces natxet/cssmin with scssphp it can now compile SASS/SCSS code too!
 
 ## Installation
 
