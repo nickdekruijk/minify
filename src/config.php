@@ -12,8 +12,8 @@ return [
     */
 
     'output' => [
-        'css' => 'css/build/app.css',
-        'js' => 'js/build/app.js',
+        'css' => 'css/builds/app.css',
+        'js' => 'js/builds/app.js',
     ],
 
     /*
