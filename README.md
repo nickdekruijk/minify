@@ -7,9 +7,9 @@ Version 2 is a completely new package ([version 1 is archived here](https://gith
 
 ## Installation
 
-Begin by installing this package through Composer.
+Begin by installing this package with composer.
 
-```composer require nickdekruijk/minify```
+`composer require nickdekruijk/minify`
 
 ## Upgrading from 1.x
 When upgrading change your projects composer.json to require nickdekruijk/minify with at least version "^2.0" and run `composer update`.
