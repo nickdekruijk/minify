@@ -14,7 +14,7 @@ Begin by installing this package through Composer.
 ## Upgrading from 1.x
 When upgrading change your projects composer.json to require nickdekruijk/minify with at least version "^2.0" and run `composer update`.
 
-If you use .gitignore to ignore the old builds in js/builds and css/builds dont' forget to remove them from your .gitignore file.
+If you use .gitignore to ignore the old builds in js/builds and css/builds dont' forget to remove them from your .gitignore file and delete all obsolete build .css and .js files.
 
 You may also need to change the Minify::stylesheet and Minify::javascript calls in your code/views since pathname might change depending on your configuration.
 
