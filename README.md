@@ -26,7 +26,7 @@ Publish the config file if the defaults doesn't suite your needs:
 
 ### Stylesheet
 
-```php
+```html
 // app/views/hello.blade.php
 <html>
     <head>
@@ -40,13 +40,15 @@ Publish the config file if the defaults doesn't suite your needs:
 
 ### Javascript
 
-```php
+```html
 // app/views/hello.blade.php
 
 <html>
     <body>
         ...
         {!! Minify::javascript(['lazyload.min.js', 'scripts.js']) !!}
+        <!-- Or: -->
+        {!! Minify::javascript(['https://cdn.jsdelivr.net/npm/vanilla-lazyload@12.4.0/dist/lazyload.min.js', 'scripts.js') !!}
     </body>
 </html>
 ```
