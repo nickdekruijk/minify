@@ -36,7 +36,7 @@ class Minify
                     return $filename;
                 }
             }
-            throw new Exception($file . ' not found within scssImportPaths');
+            throw new Exception($file . ' not found within importPaths');
         }
     }
 
