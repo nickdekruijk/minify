@@ -18,16 +18,21 @@ class Minify
         }
         $filemtime = filemtime(public_path($output));
         foreach((array)$files as $file) {
-            if (filemtime(self::findFile($file, $paths)) > $filemtime) {
+            if (!self::isUrl($file) && filemtime(self::findFile($file, $paths)) > $filemtime) {
                 return true;
             }
         }
         return false;
     }
 
+    private static function isUrl($file)
+    {
+        return substr($file, 0, 8) === "https://";
+    }
+
     private static function findFile($file, $paths)
     {
-        if (file_exists($file)) {
+        if (self::isUrl($file) || file_exists($file)) {
             return $file;
         } else {
             foreach($paths as $path) {
