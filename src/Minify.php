@@ -10,11 +10,11 @@ class Minify
 {
     private static function minifyRequired($files, $output, $paths)
     {
-        if (in_array(app()->environment(), config('minify.skip_environment'))) {
-            return false;
-        }
         if (!file_exists(public_path($output))) {
             return true;
+        }
+        if (in_array(app()->environment(), config('minify.skip_environment'))) {
+            return false;
         }
         $filemtime = filemtime(public_path($output));
         foreach ((array) $files as $file) {
