@@ -17,7 +17,7 @@ class Minify
             return true;
         }
         $filemtime = filemtime(public_path($output));
-        foreach((array)$files as $file) {
+        foreach ((array) $files as $file) {
             if (!self::isUrl($file) && filemtime(self::findFile($file, $paths)) > $filemtime) {
                 return true;
             }
@@ -35,7 +35,7 @@ class Minify
         if (self::isUrl($file) || file_exists($file)) {
             return $file;
         } else {
-            foreach($paths as $path) {
+            foreach ($paths as $path) {
                 $filename = rtrim($path, '/') . '/' . $file;
                 if (file_exists($filename)) {
                     return $filename;
@@ -75,7 +75,7 @@ class Minify
             $scss->setFormatter(new $formatter);
 
             $css = '';
-            foreach((array)$files as $file) {
+            foreach ((array) $files as $file) {
                 $css .= file_get_contents(self::findCssFile($file));
             }
             $css = $scss->compile($css);
@@ -91,7 +91,7 @@ class Minify
 
         if (self::minifyRequired($files, $output, config('minify.jsImportPaths'))) {
             $js = '';
-            foreach((array)$files as $file) {
+            foreach ((array) $files as $file) {
                 $js .= file_get_contents(self::findJsFile($file));
             }
             $js = Minifier::minify($js, ['flaggedComments' => config('minify.jsFlaggedComments')]);
