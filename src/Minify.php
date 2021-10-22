@@ -92,7 +92,7 @@ class Minify
         if (self::minifyRequired($files, $output, config('minify.jsImportPaths'))) {
             $js = '';
             foreach ((array) $files as $file) {
-                $js .= file_get_contents(self::findJsFile($file));
+                $js .= file_get_contents(self::findJsFile($file)) . PHP_EOL;
             }
             $js = Minifier::minify($js, ['flaggedComments' => config('minify.jsFlaggedComments')]);
             self::outputFile(public_path($output), $js);
