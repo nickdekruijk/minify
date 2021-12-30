@@ -64,7 +64,7 @@ class Minify
         file_put_contents($file, $content);
     }
 
-    public static function stylesheet($files = ['../resources/sass/app.scss'], $output = null)
+    public static function stylesheet($files = ['../resources/sass/app.scss'], $output = null, $media = 'all', $inline = false)
     {
         $output = $output ?: config('minify.output.css');
 
@@ -82,7 +82,11 @@ class Minify
 
             self::outputFile(public_path($output), $css);
         }
-        return '<link rel="stylesheet" type="text/css" href="' . asset($output) . '?' . filemtime(public_path($output)) . '">';
+        if ($inline) {
+            return '<style type="text/css">' . file_get_contents(public_path($output)) . '</style>';
+        } else {
+            return '<link rel="stylesheet" type="text/css" media="' . $media . '" href="' . asset($output) . '?' . filemtime(public_path($output)) . '">';
+        }
     }
 
     public static function javascript($files = ['../resources/js/app.js'], $output = null)
