@@ -9,7 +9,7 @@ use ScssPhp\ScssPhp\OutputStyle;
 
 class Minify
 {
-    private static function minifyRequired($files, $output, $paths)
+    private static function minifyRequired(array $files, string $output, array $paths)
     {
         if (!file_exists(public_path($output))) {
             return true;
@@ -26,12 +26,12 @@ class Minify
         return false;
     }
 
-    private static function isUrl($file)
+    private static function isUrl(string $file)
     {
         return substr($file, 0, 8) === "https://";
     }
 
-    private static function findFile($file, $paths)
+    private static function findFile(string $file, array $paths)
     {
         if (self::isUrl($file) || file_exists($file)) {
             return $file;
@@ -46,17 +46,17 @@ class Minify
         }
     }
 
-    private static function findCssFile($file)
+    private static function findCssFile(string $file)
     {
         return self::findFile($file, config('minify.scssImportPaths'));
     }
 
-    private static function findJsFile($file)
+    private static function findJsFile(string $file)
     {
         return self::findFile($file, config('minify.jsImportPaths'));
     }
 
-    private static function outputFile($file, $content)
+    private static function outputFile(string $file, string $content)
     {
         $directory = pathinfo($file)['dirname'];
         if (!is_dir($directory)) {
@@ -65,30 +65,30 @@ class Minify
         file_put_contents($file, $content);
     }
 
-    public static function stylesheet($files = ['../resources/sass/app.scss'], $output = null)
+    public static function stylesheet(array $files = ['../resources/sass/app.scss'], null|string $output = null)
     {
         $output = $output ?: config('minify.output.css');
 
         if (self::minifyRequired($files, $output, config('minify.scssImportPaths'))) {
-            $scss = new Compiler();
-            $scss->setImportPaths(config('minify.scssImportPaths'));
+            $compiler = new Compiler();
+            $compiler->setImportPaths(config('minify.scssImportPaths'));
 
             if (config('minify.compressed')) {
-                $scss->setOutputStyle(OutputStyle::COMPRESSED);
+                $compiler->setOutputStyle(OutputStyle::COMPRESSED);
             }
 
-            $css = '';
-            foreach ((array) $files as $file) {
-                $css .= file_get_contents(self::findCssFile($file));
+            $scss = '';
+            foreach ($files as $file) {
+                $scss .= file_get_contents(self::findCssFile($file));
             }
-            $css = $scss->compileString($css)->getCss();
+            $css = $compiler->compileString($scss)->getCss();
 
             self::outputFile(public_path($output), $css);
         }
         return '<link rel="stylesheet" type="text/css" href="' . asset($output) . '?' . filemtime(public_path($output)) . '">';
     }
 
-    public static function javascript($files = ['../resources/js/app.js'], $output = null)
+    public static function javascript(array $files = ['../resources/js/app.js'], null|string $output = null)
     {
         $output = $output ?: config('minify.output.js');
 
