@@ -8,8 +8,8 @@
 		"email": "git@nickdekruijk.nl"
 	}],
 	"require": {
-		"php": ">=7.2.0",
-		"scssphp/scssphp": "^1.0",
+		"php": "^8.2",
+		"scssphp/scssphp": "^2.0",
 		"tedivm/jshrink": "^1.3"
 	},
 	"autoload": {
