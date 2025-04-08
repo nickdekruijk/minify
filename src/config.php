@@ -63,15 +63,14 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | scssFormatter
+    | compressed
     |--------------------------------------------------------------------------
     |
-    | Default ScssPhp Formatter to use
-    | Options: Expanded Nested Compact Compressed Crunched
+    | Use setOutputStyle('\ScssPhp\ScssPhp\OutputStyle::COMPRESSED') on SCSS
     |
     */
 
-    'scssFormatter' => '\ScssPhp\ScssPhp\Formatter\Crunched',
+    'compressed' => true,
 
     /*
     |--------------------------------------------------------------------------

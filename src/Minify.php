@@ -2,9 +2,10 @@
 
 namespace NickDeKruijk\Minify;
 
-use ScssPhp\ScssPhp\Compiler;
-use JShrink\Minifier;
 use Exception;
+use JShrink\Minifier;
+use ScssPhp\ScssPhp\Compiler;
+use ScssPhp\ScssPhp\OutputStyle;
 
 class Minify
 {
@@ -71,14 +72,16 @@ class Minify
         if (self::minifyRequired($files, $output, config('minify.scssImportPaths'))) {
             $scss = new Compiler();
             $scss->setImportPaths(config('minify.scssImportPaths'));
-            $formatter = config('minify.scssFormatter');
-            $scss->setFormatter(new $formatter);
+
+            if (config('minify.compressed')) {
+                $scss->setOutputStyle(OutputStyle::COMPRESSED);
+            }
 
             $css = '';
             foreach ((array) $files as $file) {
                 $css .= file_get_contents(self::findCssFile($file));
             }
-            $css = $scss->compile($css);
+            $css = $scss->compileString($css)->getCss();
 
             self::outputFile(public_path($output), $css);
         }
